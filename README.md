@@ -1,3 +1,5 @@
+English | [简体中文](./README.CN.md)
+
 # HTML/CSS and JavaScript Games 🎮
 
 This repository contains a collection of HTML, CSS, and JavaScript games. 🎯🕹
