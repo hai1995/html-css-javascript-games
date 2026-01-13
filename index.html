@@ -3,25 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML5游戏集合</title>
+    <title>JS游戏厅 - 30个经典游戏的终极合集</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="https://avatars.githubusercontent.com/u/44248555?s=96&v=4">
-
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="title">HTML5游戏集合</h1>
-            <p class="subtitle">探索30款精彩的浏览器游戏</p>
-        </header>
-        
-        <main>
-            <div class="game-grid" id="gameGrid">
-                <!-- 游戏卡片将通过JavaScript动态生成 -->
-            </div>
-        </main>
-    </div>
+    <!-- 背景动画容器 -->
+    <div id="background-canvas"></div>
     
+    <!-- 粒子效果 -->
+    <div id="particles-container"></div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">JS游戏厅</span>
+            </div>
+            <div class="nav-links">
+                <a href="#games" class="nav-link">游戏列表</a>
+                <a href="#about" class="nav-link">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-gradient">30个经典游戏</span>
+                        <br>
+                        <span class="title-highlight">一站式畅玩</span>
+                    </h1>
+                    <p class="hero-description">
+                        从经典的消消乐到刺激的射箭游戏，从烧脑的俄罗斯方块到快节奏的打字游戏——这里汇集了最受欢迎的HTML5/JavaScript游戏，无需下载，即点即玩！
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">精彩游戏</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">免费畅玩</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">0</span>
+                            <span class="stat-label">下载需求</span>
+                        </div>
+                    </div>
+                    <button class="cta-button" onclick="scrollToGames()">
+                        <span>立即开始游戏</span>
+                        <span class="button-glow"></span>
+                    </button>
+                </div>
+                <div class="hero-visual">
+                    <div class="game-showcase">
+                        <div class="showcase-card active" data-game="candy">
+                            <div class="card-icon">🍭</div>
+                            <div class="card-title">糖果消消乐</div>
+                        </div>
+                        <div class="showcase-card" data-game="archery">
+                            <div class="card-icon">🏹</div>
+                            <div class="card-title">射箭大师</div>
+                        </div>
+                        <div class="showcase-card" data-game="tetris">
+                            <div class="card-icon">🧱</div>
+                            <div class="card-title">俄罗斯方块</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 游戏列表区域 -->
+        <section id="games" class="games-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="title-icon">🎯</span>
+                        选择你的游戏
+                    </h2>
+                    <p class="section-subtitle">点击任意游戏卡片即可立即开始游戏</p>
+                </div>
+                
+                <!-- 游戏过滤器 -->
+                <div class="game-filters">
+                    <button class="filter-btn active" data-filter="all">全部游戏</button>
+                    <button class="filter-btn" data-filter="puzzle">益智类</button>
+                    <button class="filter-btn" data-filter="action">动作类</button>
+                    <button class="filter-btn" data-filter="classic">经典类</button>
+                    <button class="filter-btn" data-filter="multiplayer">对战类</button>
+                </div>
+
+                <!-- 游戏网格 -->
+                <div class="games-grid" id="gamesGrid">
+                    <!-- 游戏卡片将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 特色功能区域 -->
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">为什么选择我们的游戏平台？</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>即点即玩</h3>
+                        <p>无需下载安装，打开浏览器就能玩，支持所有现代浏览器</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>全设备支持</h3>
+                        <p>完美适配电脑、平板和手机，随时随地享受游戏乐趣</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3>精美画面</h3>
+                        <p>每个游戏都经过精心设计，提供最佳的视觉体验</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>挑战自我</h3>
+                        <p>记录最高分，挑战朋友，成为游戏排行榜的霸主</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">🎮</span>
+                    <span class="logo-text">JS游戏厅</span>
+                </div>
+                <p class="footer-text">
+                    © 2026 JS游戏厅. 所有游戏均为开源项目，仅供学习和娱乐使用。
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 游戏模态框 -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalGameTitle"></h3>
+                <button class="close-btn" onclick="closeGameModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="gameFrame" src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
