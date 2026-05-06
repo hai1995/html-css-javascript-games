@@ -321,7 +321,7 @@ function initializeApp() {
 // ==================== 创建粒子效果 ====================
 function createParticles() {
     const container = document.getElementById('particles-container');
-    const particleCount = 50;
+    const particleCount = 30; // 减少粒子数量以提升性能
     
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -344,14 +344,66 @@ function createParticles() {
     }
 }
 
+// ==================== 优化粒子动画循环 ====================
+let animationFrameId = null;
+
+function animateParticles() {
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach((particle, index) => {
+        // 使用requestAnimationFrame进行平滑动画
+        const rect = particle.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // 当粒子超出视口时重新定位
+        if (rect.bottom < 0) {
+            particle.style.top = windowHeight + 10 + 'px';
+        }
+    });
+    
+    animationFrameId = requestAnimationFrame(animateParticles);
+}
+
+// 启动粒子动画循环
+function startParticleAnimation() {
+    if (!animationFrameId) {
+        animateParticles();
+    }
+}
+
+// 停止粒子动画循环
+function stopParticleAnimation() {
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+}
+
+// 页面可见性变化时暂停/恢复动画
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        stopParticleAnimation();
+    } else {
+        startParticleAnimation();
+    }
+});
+
 // ==================== 渲染游戏网格 ====================
-function renderGamesGrid(filter = 'all') {
+function renderGamesGrid(filter = 'all', searchQuery = '') {
     const grid = document.getElementById('gamesGrid');
     grid.innerHTML = '';
     
-    const filteredGames = filter === 'all' 
+    let filteredGames = filter === 'all' 
         ? gamesData 
         : gamesData.filter(game => game.category === filter);
+    
+    // 应用搜索过滤
+    if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase();
+        filteredGames = filteredGames.filter(game => 
+            game.title.toLowerCase().includes(query) ||
+            game.description.toLowerCase().includes(query)
+        );
+    }
     
     filteredGames.forEach((game, index) => {
         const gameCard = createGameCard(game, index);
@@ -367,6 +419,18 @@ function renderGamesGrid(filter = 'all') {
             }, index * 100);
         });
     }, 100);
+    
+    // 显示无结果提示
+    if (filteredGames.length === 0) {
+        const emptyState = document.createElement('div');
+        emptyState.className = 'empty-state';
+        emptyState.innerHTML = `
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🔍</div>
+            <h3 style="font-family: var(--font-primary); color: var(--text-secondary);">未找到匹配的游戏</h3>
+            <p style="color: var(--text-muted);">请尝试其他搜索词或选择不同的分类</p>
+        `;
+        grid.appendChild(emptyState);
+    }
 }
 
 // ==================== 创建游戏卡片 ====================
@@ -415,7 +479,7 @@ function createGameCard(game, index) {
     // 添加悬停效果
     card.addEventListener('mouseenter', () => {
         card.style.borderColor = categoryColors[game.category];
-        card.style.boxShadow = `0 20px 40px ${categoryColors[game.color]}30`;
+        card.style.boxShadow = `0 20px 40px ${categoryColors[game.category]}30`;
     });
     
     card.addEventListener('mouseleave', () => {
@@ -426,8 +490,19 @@ function createGameCard(game, index) {
     return card;
 }
 
+// 当前搜索查询和过滤器状态
+let currentFilter = 'all';
+let currentSearchQuery = '';
+
 // ==================== 设置事件监听器 ====================
 function setupEventListeners() {
+    // 搜索框输入
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', debounce((e) => {
+        currentSearchQuery = e.target.value;
+        renderGamesGrid(currentFilter, currentSearchQuery);
+    }, 200));
+    
     // 过滤按钮
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
@@ -437,8 +512,8 @@ function setupEventListeners() {
             btn.classList.add('active');
             
             // 过滤游戏
-            const filter = btn.dataset.filter;
-            renderGamesGrid(filter);
+            currentFilter = btn.dataset.filter;
+            renderGamesGrid(currentFilter, currentSearchQuery);
         });
     });
     
@@ -561,6 +636,10 @@ function openGame(gameId, gameTitle) {
     const modal = document.getElementById('gameModal');
     const title = document.getElementById('modalGameTitle');
     const frame = document.getElementById('gameFrame');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    
+    // 显示加载指示器
+    loadingIndicator.classList.remove('hidden');
     
     title.textContent = gameTitle;
     frame.src = `./${gameId}/index.html`;
@@ -577,6 +656,18 @@ function openGame(gameId, gameTitle) {
     
     console.log(`🎮 开始游戏: ${gameTitle}`);
 }
+
+// ==================== 游戏加载完成处理 ====================
+function onGameFrameLoad() {
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    loadingIndicator.classList.add('hidden');
+}
+
+// 为iframe添加加载事件监听
+document.addEventListener('DOMContentLoaded', () => {
+    const frame = document.getElementById('gameFrame');
+    frame.addEventListener('load', onGameFrameLoad);
+});
 
 // ==================== 关闭游戏模态框 ====================
 function closeGameModal() {
@@ -716,10 +807,34 @@ window.addEventListener('unhandledrejection', (e) => {
     console.error('🎮 未处理的Promise错误:', e.reason);
 });
 
+// ==================== 移动端菜单切换 ====================
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    
+    navLinks.classList.toggle('active');
+    hamburgerBtn.classList.toggle('active');
+}
+
+// 点击导航链接时关闭菜单
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const navLinksContainer = document.querySelector('.nav-links');
+            const hamburgerBtn = document.querySelector('.hamburger-btn');
+            
+            navLinksContainer.classList.remove('active');
+            hamburgerBtn.classList.remove('active');
+        });
+    });
+});
+
 // ==================== 导出函数供全局使用 ====================
 window.openGame = openGame;
 window.closeGameModal = closeGameModal;
 window.scrollToGames = scrollToGames;
 window.showHelp = showHelp;
+window.toggleMobileMenu = toggleMobileMenu;
 
 console.log('🎮 JS游戏厅脚本加载完成！');

@@ -98,6 +98,8 @@ body {
     opacity: 0.6;
     animation: float 6s ease-in-out infinite;
     box-shadow: var(--glow-primary);
+    will-change: transform, opacity;
+    transform: translateZ(0);
 }
 
 @keyframes float {
@@ -157,6 +159,37 @@ body {
 .nav-links {
     display: flex;
     gap: 2rem;
+}
+
+/* 汉堡菜单按钮 */
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger-line {
+    width: 25px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 3px;
+    transition: var(--transition);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active .hamburger-line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .nav-link {
@@ -364,6 +397,8 @@ body {
     transition: var(--transition-slow);
     cursor: pointer;
     backdrop-filter: blur(10px);
+    will-change: transform, opacity, z-index;
+    transform: translateZ(0);
 }
 
 .showcase-card:nth-child(1) {
@@ -451,6 +486,43 @@ body {
     color: var(--text-secondary);
 }
 
+/* 搜索框 */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto 2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 2.5rem 1rem 1.5rem;
+    background: var(--bg-card);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 25px;
+    color: var(--text-primary);
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    transition: var(--transition);
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
 /* 游戏过滤器 */
 .game-filters {
     display: flex;
@@ -498,6 +570,8 @@ body {
     cursor: pointer;
     border: 1px solid rgba(0, 255, 255, 0.2);
     backdrop-filter: blur(10px);
+    will-change: transform, box-shadow, border-color;
+    transform: translateZ(0);
 }
 
 .game-card::before {
@@ -731,12 +805,68 @@ body {
 
 .modal-body {
     height: calc(100% - 80px);
+    position: relative;
+}
+
+.loading-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.loading-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 255, 255, 0.3);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-family: var(--font-secondary);
+    color: var(--primary);
+    font-size: 1.2rem;
 }
 
 #gameFrame {
     width: 100%;
     height: 100%;
     border: none;
+    position: relative;
+    z-index: 5;
+}
+
+/* ==================== 屏幕阅读器专用类 ==================== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 /* ==================== 响应式设计 ==================== */
@@ -751,7 +881,29 @@ body {
     }
     
     .nav-links {
-        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition);
+    }
+    
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .hamburger-btn {
+        display: flex;
     }
     
     .games-grid {
