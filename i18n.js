@@ -1,6 +1,7 @@
 const i18n = {
     currentLocale: 'zh-CN',
     translations: {},
+    gameTranslations: {},
     
     async init() {
         const savedLocale = localStorage.getItem('locale') || 'zh-CN';
@@ -9,10 +10,17 @@ const i18n = {
     
     async setLocale(locale) {
         try {
-            const response = await fetch(`./locales/${locale}.json`);
-            if (!response.ok) throw new Error('Failed to load translations');
+            // 加载主语言包
+            const [mainResponse, gameResponse] = await Promise.all([
+                fetch(`./locales/${locale}.json`),
+                fetch(`./locales/${locale}-games.json`)
+            ]);
             
-            this.translations = await response.json();
+            if (!mainResponse.ok) throw new Error('Failed to load main translations');
+            if (!gameResponse.ok) throw new Error('Failed to load game translations');
+            
+            this.translations = await mainResponse.json();
+            this.gameTranslations = await gameResponse.json();
             this.currentLocale = locale;
             localStorage.setItem('locale', locale);
             
@@ -29,6 +37,30 @@ const i18n = {
     t(key, params = {}) {
         const keys = key.split('.');
         let value = this.translations;
+        
+        for (const k of keys) {
+            if (value && typeof value === 'object' && k in value) {
+                value = value[k];
+            } else {
+                return key;
+            }
+        }
+        
+        if (typeof value === 'string') {
+            return value.replace(/\{(\w+)\}/g, (match, param) => {
+                return params[param] !== undefined ? params[param] : match;
+            });
+        }
+        
+        return value;
+    },
+    
+    gt(gameKey, key, params = {}) {
+        const gameTranslations = this.gameTranslations[gameKey];
+        if (!gameTranslations) return key;
+        
+        const keys = key.split('.');
+        let value = gameTranslations;
         
         for (const k of keys) {
             if (value && typeof value === 'object' && k in value) {
@@ -88,6 +120,10 @@ const i18n = {
     toggleLocale() {
         const newLocale = this.currentLocale === 'zh-CN' ? 'en' : 'zh-CN';
         this.setLocale(newLocale);
+    },
+    
+    getGameUrl(gameId, gameTitle) {
+        return `./${gameId}/index.html?locale=${this.currentLocale}`;
     }
 };
 

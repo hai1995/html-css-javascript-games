@@ -1,0 +1,104 @@
+{
+    "archery": {
+        "hint": "Draw back an arrow and launch it!",
+        "miss": "MISS!",
+        "bullseye": "BULLSEYE!",
+        "hit": "HIT!"
+    },
+    "candycrush": {
+        "score": "Score",
+        "moves": "Moves",
+        "level": "Level",
+        "gameover": "Game Over",
+        "win": "You Win!"
+    },
+    "speedtyping": {
+        "title": "Speed Typing",
+        "start": "Start",
+        "time": "Time:",
+        "score": "Score:",
+        "wpm": "WPM",
+        "accuracy": "Accuracy:",
+        "gameover": "Time's up!",
+        "congrats": "Great job!"
+    },
+    "breakout": {
+        "score": "Score",
+        "lives": "Lives",
+        "level": "Level",
+        "gameover": "Game Over",
+        "win": "Level Complete!"
+    },
+    "minesweeper": {
+        "flag": "Flag",
+        "reveal": "Reveal",
+        "mines": "Mines:",
+        "time": "Time:",
+        "gameover": "Game Over!",
+        "win": "You Win!"
+    },
+    "snake": {
+        "score": "Score",
+        "highscore": "High Score",
+        "gameover": "Game Over",
+        "start": "Press Enter to Start"
+    },
+    "tetris": {
+        "score": "Score",
+        "level": "Level",
+        "lines": "Lines",
+        "gameover": "Game Over",
+        "start": "Press Space to Start"
+    },
+    "pingpong": {
+        "player1": "Player 1",
+        "player2": "Player 2",
+        "start": "Press Space to Start",
+        "win": "Winner!"
+    },
+    "memory": {
+        "title": "Memory Game",
+        "moves": "Moves:",
+        "matches": "Matches:",
+        "time": "Time:",
+        "win": "Congratulations!",
+        "playagain": "Play Again"
+    },
+    "rockpaperscissors": {
+        "rock": "Rock",
+        "paper": "Paper",
+        "scissors": "Scissors",
+        "vs": "VS",
+        "win": "You Win!",
+        "lose": "You Lose!",
+        "tie": "It's a Tie!",
+        "score": "Score:"
+    },
+    "tictactoe": {
+        "x": "X",
+        "o": "O",
+        "win": " wins!",
+        "tie": "It's a Tie!",
+        "newgame": "New Game"
+    },
+    "hangman": {
+        "hint": "Hint:",
+        "guesses": "Guesses left:",
+        "win": "You Win!",
+        "lose": "Game Over! The word was: "
+    },
+    "2048": {
+        "score": "Score",
+        "best": "Best",
+        "win": "You Win!",
+        "gameover": "Game Over"
+    },
+    "quiz": {
+        "question": "Question",
+        "score": "Score",
+        "result": "Result:",
+        "correct": "Correct!",
+        "wrong": "Wrong!",
+        "finish": "Quiz Complete!"
+    }
+}

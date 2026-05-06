@@ -2,29 +2,18 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Talha - Snake Game</title>
-
-    <!-- 👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻-->
-    <!-- Also uploaded the demo of this code in a gif : https://c.tenor.com/x8v1oNUOmg4AAAAd/tenor.gif-->
-    <!-- 👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻-->
-
-    <!-- 👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻-->
-    <!-- More html-css-js Games Calculators Games Cards Elements Projects on https://www.github.com/he-is-talha --> 
-    <!-- 👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻-->
-
+    <title>Snake Game</title>
     <link rel="icon" href="https://avatars.githubusercontent.com/u/44248555?s=96&v=4">
-
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <script src="script.js" defer></script>
   </head>
   <body>
  
     <div class="wrapper">
       <div class="game-details">
-        <span class="score">Score: 0</span>
-        <span class="high-score">High Score: 0</span>
+        <span class="score" id="scoreText">Score: 0</span>
+        <span class="high-score" id="highScoreText">High Score: 0</span>
       </div>
       <div class="play-board"></div>
       <div class="controls">
@@ -35,5 +24,37 @@
       </div>
     </div>
 
-  
+    <script>
+        function getLocale() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('locale') || 'en';
+        }
+        
+        const translations = {
+            'en': {
+                score: 'Score',
+                highScore: 'High Score'
+            },
+            'zh-CN': {
+                score: '得分',
+                highScore: '最高分'
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const locale = getLocale();
+            const t = translations[locale] || translations['en'];
+            
+            const scoreElement = document.getElementById('scoreText');
+            const highScoreElement = document.getElementById('highScoreText');
+            
+            if (scoreElement) {
+                scoreElement.textContent = t.score + ': 0';
+            }
+            if (highScoreElement) {
+                highScoreElement.textContent = t.highScore + ': 0';
+            }
+        });
+    </script>
+    <script src="script.js" defer></script>
 </body></html>

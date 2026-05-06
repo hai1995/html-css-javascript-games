@@ -1,0 +1,104 @@
+{
+    "archery": {
+        "hint": "拉开弓箭并发射！",
+        "miss": "未命中！",
+        "bullseye": "正中靶心！",
+        "hit": "命中！"
+    },
+    "candycrush": {
+        "score": "得分",
+        "moves": "步数",
+        "level": "关卡",
+        "gameover": "游戏结束",
+        "win": "胜利！"
+    },
+    "speedtyping": {
+        "title": "极速打字",
+        "start": "开始",
+        "time": "时间：",
+        "score": "得分：",
+        "wpm": "每分钟字数",
+        "accuracy": "准确率：",
+        "gameover": "时间到！",
+        "congrats": "做得好！"
+    },
+    "breakout": {
+        "score": "得分",
+        "lives": "生命",
+        "level": "关卡",
+        "gameover": "游戏结束",
+        "win": "关卡完成！"
+    },
+    "minesweeper": {
+        "flag": "标记",
+        "reveal": "揭开",
+        "mines": "地雷：",
+        "time": "时间：",
+        "gameover": "游戏结束！",
+        "win": "胜利！"
+    },
+    "snake": {
+        "score": "得分",
+        "highscore": "最高分",
+        "gameover": "游戏结束",
+        "start": "按回车开始"
+    },
+    "tetris": {
+        "score": "得分",
+        "level": "关卡",
+        "lines": "行数",
+        "gameover": "游戏结束",
+        "start": "按空格开始"
+    },
+    "pingpong": {
+        "player1": "玩家1",
+        "player2": "玩家2",
+        "start": "按空格开始",
+        "win": "获胜！"
+    },
+    "memory": {
+        "title": "记忆翻牌",
+        "moves": "步数：",
+        "matches": "配对：",
+        "time": "时间：",
+        "win": "恭喜！",
+        "playagain": "再玩一次"
+    },
+    "rockpaperscissors": {
+        "rock": "石头",
+        "paper": "布",
+        "scissors": "剪刀",
+        "vs": "对战",
+        "win": "你赢了！",
+        "lose": "你输了！",
+        "tie": "平局！",
+        "score": "得分："
+    },
+    "tictactoe": {
+        "x": "X",
+        "o": "O",
+        "win": " 获胜！",
+        "tie": "平局！",
+        "newgame": "新游戏"
+    },
+    "hangman": {
+        "hint": "提示：",
+        "guesses": "剩余猜测：",
+        "win": "你赢了！",
+        "lose": "游戏结束！答案是："
+    },
+    "2048": {
+        "score": "得分",
+        "best": "最佳",
+        "win": "你赢了！",
+        "gameover": "游戏结束"
+    },
+    "quiz": {
+        "question": "问题",
+        "score": "得分",
+        "result": "结果：",
+        "correct": "正确！",
+        "wrong": "错误！",
+        "finish": "测验完成！"
+    }
+}

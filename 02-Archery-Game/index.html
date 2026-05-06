@@ -6,17 +6,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="style.css" />
 
-
-    <!-- 👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻-->
-    <!-- Also uploaded the demo of this code in a gif : https://c.tenor.com/x8v1oNUOmg4AAAAd/tenor.gif-->
-    <!-- 👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻-->
-
-    <!-- 👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻-->
-    <!-- More html-css-js Games Calculators Games Cards Elements Projects on https://www.github.com/he-is-talha --> 
-    <!-- 👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻-->
-
     <link rel="icon" href="https://avatars.githubusercontent.com/u/44248555?s=96&v=4">
-
   </head>
   <body>
     <svg id="game" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" overflow="visible">
@@ -72,14 +62,34 @@
         <path d="M486 113L484 130 506 130 481 188 506 187 520 131 540 135 545 119"/>
         <path d="M526,195l5-20l22,5l-9,16L526,195z M558,164l32-44l-35-9l-19,51L558,164z"/>
       </g>
-    <!-- 	<line x1= "875", y1= "280", x2= "925", y2= "220" stroke="red"/>
-
-    <circle class="point" r="7" fill="purple" opacity=".4"/> -->
     </svg>
 
-    <span>Draw back an arrow and launch it!</span>
+    <span id="gameHint">Draw back an arrow and launch it!</span>
+    <script>
+        function getLocale() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('locale') || 'en';
+        }
+        
+        const translations = {
+            'en': {
+                hint: 'Draw back an arrow and launch it!'
+            },
+            'zh-CN': {
+                hint: '拉开弓箭并发射！'
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const locale = getLocale();
+            const hintElement = document.getElementById('gameHint');
+            if (hintElement && translations[locale]) {
+                hintElement.textContent = translations[locale].hint;
+            }
+        });
+    </script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
-<script src='//s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js'></script>
+    <script src='//s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js'></script>
     <script src="script.js"></script>
   </body>
 </html>

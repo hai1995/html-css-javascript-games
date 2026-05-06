@@ -663,7 +663,8 @@ function openGame(gameId, gameTitle) {
     loadingIndicator.classList.remove('hidden');
     
     title.textContent = gameTitle;
-    frame.src = `./${gameId}/index.html`;
+    // 传递locale参数给游戏
+    frame.src = `./${gameId}/index.html?locale=${i18n.currentLocale}`;
     
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';

@@ -1,31 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Talha - Tetris Game</title>
+    <title>Tetris Game</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="icon" href="https://avatars.githubusercontent.com/u/44248555?s=96&v=4" />
-
-    <!-- 👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻-->
-    <!-- Also uploaded the demo of this code in a gif : https://c.tenor.com/x8v1oNUOmg4AAAAd/tenor.gif-->
-    <!-- 👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻-->
-
-    <!-- 👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻👇🏻-->
-    <!-- More html-css-js Games Calculators Games Cards Elements Projects on https://www.github.com/he-is-talha -->
-    <!-- 👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻👆🏻-->
   </head>
   <body>
     <div id="tetris">
       <div id="info">
         <div id="next_shape"></div>
-        <p id="level">Level: <span></span></p>
-        <p id="lines">Lines: <span></span></p>
-        <p id="score">Score: <span></span></p>
-        <p id="time">Time: <span></span></p>
-        <button id="start">Start</button>
-        <p class="red">Press the Esc button to pause<span></span></p>
+        <p id="level"><span id="levelLabel">Level:</span> <span id="levelValue"></span></p>
+        <p id="lines"><span id="linesLabel">Lines:</span> <span id="linesValue"></span></p>
+        <p id="score"><span id="scoreLabel">Score:</span> <span id="scoreValue"></span></p>
+        <p id="time"><span id="timeLabel">Time:</span> <span id="timeValue"></span></p>
+        <button id="start" data-i18n="start">Start</button>
+        <p class="red" id="pauseHint"><span id="pauseLabel">Press the Esc button to pause</span><span></span></p>
       </div>
       <div id="canvas"></div>
     </div>
+    <script>
+        function getLocale() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('locale') || 'en';
+        }
+        
+        const translations = {
+            'en': {
+                level: 'Level',
+                lines: 'Lines',
+                score: 'Score',
+                time: 'Time',
+                start: 'Start',
+                pause: 'Press the Esc button to pause'
+            },
+            'zh-CN': {
+                level: '关卡',
+                lines: '行数',
+                score: '得分',
+                time: '时间',
+                start: '开始',
+                pause: '按 Esc 键暂停'
+            }
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const locale = getLocale();
+            const t = translations[locale] || translations['en'];
+            
+            document.getElementById('levelLabel').textContent = t.level + ':';
+            document.getElementById('linesLabel').textContent = t.lines + ':';
+            document.getElementById('scoreLabel').textContent = t.score + ':';
+            document.getElementById('timeLabel').textContent = t.time + ':';
+            document.getElementById('start').textContent = t.start;
+            document.getElementById('pauseLabel').textContent = t.pause;
+        });
+    </script>
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
