@@ -378,6 +378,18 @@ function stopParticleAnimation() {
     }
 }
 
+// 语言切换时更新UI
+document.addEventListener('localeChanged', (e) => {
+    const langCurrent = document.querySelector('.lang-current');
+    if (langCurrent) {
+        langCurrent.textContent = e.detail.locale === 'zh-CN' ? '中文' : 'EN';
+    }
+    // 重新渲染游戏网格以更新国际化文本
+    if (typeof renderGamesGrid === 'function') {
+        renderGamesGrid(currentFilter, currentSearchQuery);
+    }
+});
+
 // 页面可见性变化时暂停/恢复动画
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
@@ -426,8 +438,8 @@ function renderGamesGrid(filter = 'all', searchQuery = '') {
         emptyState.className = 'empty-state';
         emptyState.innerHTML = `
             <div style="font-size: 4rem; margin-bottom: 1rem;">🔍</div>
-            <h3 style="font-family: var(--font-primary); color: var(--text-secondary);">未找到匹配的游戏</h3>
-            <p style="color: var(--text-muted);">请尝试其他搜索词或选择不同的分类</p>
+            <h3 style="font-family: var(--font-primary); color: var(--text-secondary);" data-i18n="games.noResults">${i18n.t('games.noResults')}</h3>
+            <p style="color: var(--text-muted);" data-i18n="games.noResultsHint">${i18n.t('games.noResultsHint')}</p>
         `;
         grid.appendChild(emptyState);
     }
@@ -447,11 +459,20 @@ function createGameCard(game, index) {
         multiplayer: 'var(--accent)'
     };
     
-    const categoryNames = {
-        puzzle: '益智类',
-        action: '动作类',
-        classic: '经典类',
-        multiplayer: '对战类'
+    const difficultyMap = {
+        '简单': 'games.difficulties.easy',
+        '中等': 'games.difficulties.medium',
+        '困难': 'games.difficulties.hard'
+    };
+    
+    const getCategoryName = (category) => {
+        const key = `games.filters.${category}`;
+        return i18n.t(key);
+    };
+    
+    const getDifficultyName = (difficulty) => {
+        const key = difficultyMap[difficulty] || 'games.difficulties.easy';
+        return i18n.t(key);
     };
     
     card.innerHTML = `
@@ -463,15 +484,15 @@ function createGameCard(game, index) {
             <p class="game-card-description">${game.description}</p>
             <div class="game-card-meta">
                 <span class="game-category" style="background: ${categoryColors[game.category]}20; color: ${categoryColors[game.category]}">
-                    ${categoryNames[game.category]}
+                    ${getCategoryName(game.category)}
                 </span>
                 <button class="game-play-btn" onclick="openGame('${game.id}', '${game.title}')">
-                    开始游戏
+                    <span data-i18n="games.play">${i18n.t('games.play')}</span>
                 </button>
             </div>
             <div class="game-info" style="margin-top: 10px; display: flex; gap: 15px; font-size: 0.85rem; color: var(--text-muted);">
-                <span>难度: ${game.difficulty}</span>
-                <span>时长: ${game.time}</span>
+                <span>${i18n.t('games.difficulty')}: ${getDifficultyName(game.difficulty)}</span>
+                <span>${i18n.t('games.duration')}: ${game.time}</span>
             </div>
         </div>
     `;
@@ -756,21 +777,33 @@ document.addEventListener('keydown', (e) => {
 
 // ==================== 显示帮助信息 ====================
 function showHelp() {
+    const helpTitle = i18n.t('help.title');
+    const commonKeys = i18n.t('help.commonKeys');
+    const escClose = i18n.t('help.escClose');
+    const ctrlK = i18n.t('help.ctrlK');
+    const ctrlSlash = i18n.t('help.ctrlSlash');
+    const categories = i18n.t('help.categories');
+    const puzzle = i18n.t('help.puzzle');
+    const action = i18n.t('help.action');
+    const classic = i18n.t('help.classic');
+    const multiplayer = i18n.t('help.multiplayer');
+    const clickToPlay = i18n.t('help.clickToPlay');
+    
     const helpText = `
-🎮 JS游戏厅 - 快捷键帮助
+${helpTitle}
 
-常用快捷键：
-• ESC - 关闭游戏
-• Ctrl+K - 快速开始第一个游戏
-• Ctrl+/ - 显示此帮助信息
+${commonKeys}
+• ${escClose}
+• ${ctrlK}
+• ${ctrlSlash}
 
-游戏分类：
-• 益智类 - 需要思考和策略的游戏
-• 动作类 - 快节奏的反应游戏
-• 经典类 - 经典街机游戏
-• 对战类 - 可以与AI或朋友对战
+${categories}
+• ${puzzle}
+• ${action}
+• ${classic}
+• ${multiplayer}
 
-点击任意游戏卡片即可开始游戏！
+${clickToPlay}
     `;
     
     alert(helpText);

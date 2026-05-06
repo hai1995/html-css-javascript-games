@@ -1,0 +1,84 @@
+{
+    "nav": {
+        "games": "Games",
+        "about": "About"
+    },
+    "hero": {
+        "titleGradient": "30 Classic Games",
+        "titleHighlight": "All in One Place",
+        "description": "From classic match-3 candy games to exciting archery, from brain-teasing Tetris to fast-paced typing games — we've gathered the most popular HTML5/JavaScript games. No downloads needed, just click and play!",
+        "statsGames": "Games",
+        "statsFree": "100% Free",
+        "statsNoDownload": "No Downloads",
+        "ctaButton": "Start Playing Now"
+    },
+    "showcase": {
+        "candy": "Candy Crush",
+        "archery": "Archery Master",
+        "tetris": "Tetris"
+    },
+    "games": {
+        "title": "Choose Your Game",
+        "subtitle": "Click any game card to start playing instantly",
+        "filters": {
+            "all": "All Games",
+            "puzzle": "Puzzle",
+            "action": "Action",
+            "classic": "Classic",
+            "multiplayer": "Multiplayer"
+        },
+        "play": "Play Now",
+        "difficulty": "Difficulty",
+        "duration": "Duration",
+        "search": "Search games...",
+        "noResults": "No matching games found",
+        "noResultsHint": "Try a different search term or choose another category",
+        "difficulties": {
+            "easy": "Easy",
+            "medium": "Medium",
+            "hard": "Hard"
+        }
+    },
+    "features": {
+        "title": "Why Choose Our Gaming Platform?",
+        "instant": {
+            "title": "Instant Play",
+            "desc": "No downloads or installations needed. Open your browser and play, supporting all modern browsers"
+        },
+        "responsive": {
+            "title": "Cross-Device Support",
+            "desc": "Perfectly adapted for computers, tablets, and phones. Enjoy games anytime, anywhere"
+        },
+        "graphics": {
+            "title": "Stunning Graphics",
+            "desc": "Each game is carefully designed to provide the best visual experience"
+        },
+        "challenge": {
+            "title": "Challenge Yourself",
+            "desc": "Track high scores, challenge friends, and become the champion of our leaderboards"
+        }
+    },
+    "footer": {
+        "copyright": "© 2026 JS Game Hub. All games are open-source projects for learning and entertainment only."
+    },
+    "modal": {
+        "loading": "Loading game...",
+        "close": "Close game window"
+    },
+    "help": {
+        "title": "JS Game Hub - Keyboard Shortcuts",
+        "commonKeys": "Common Shortcuts:",
+        "escClose": "ESC - Close game",
+        "ctrlK": "Ctrl+K - Quick start first game",
+        "ctrlSlash": "Ctrl+/ - Show this help",
+        "categories": "Game Categories:",
+        "puzzle": "Puzzle - Games that require thinking and strategy",
+        "action": "Action - Fast-paced reaction games",
+        "classic": "Classic - Classic arcade games",
+        "multiplayer": "Multiplayer - Play against AI or friends",
+        "clickToPlay": "Click any game card to start playing!"
+    },
+    "language": {
+        "switchTo": "Switch Language"
+    }
+}

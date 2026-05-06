@@ -1,0 +1,84 @@
+{
+    "nav": {
+        "games": "游戏列表",
+        "about": "关于"
+    },
+    "hero": {
+        "titleGradient": "30个经典游戏",
+        "titleHighlight": "一站式畅玩",
+        "description": "从经典的消消乐到刺激的射箭游戏，从烧脑的俄罗斯方块到快节奏的打字游戏——这里汇集了最受欢迎的HTML5/JavaScript游戏，无需下载，即点即玩！",
+        "statsGames": "精彩游戏",
+        "statsFree": "免费畅玩",
+        "statsNoDownload": "下载需求",
+        "ctaButton": "立即开始游戏"
+    },
+    "showcase": {
+        "candy": "糖果消消乐",
+        "archery": "射箭大师",
+        "tetris": "俄罗斯方块"
+    },
+    "games": {
+        "title": "选择你的游戏",
+        "subtitle": "点击任意游戏卡片即可立即开始游戏",
+        "filters": {
+            "all": "全部游戏",
+            "puzzle": "益智类",
+            "action": "动作类",
+            "classic": "经典类",
+            "multiplayer": "对战类"
+        },
+        "play": "开始游戏",
+        "difficulty": "难度",
+        "duration": "时长",
+        "search": "搜索游戏...",
+        "noResults": "未找到匹配的游戏",
+        "noResultsHint": "请尝试其他搜索词或选择不同的分类",
+        "difficulties": {
+            "easy": "简单",
+            "medium": "中等",
+            "hard": "困难"
+        }
+    },
+    "features": {
+        "title": "为什么选择我们的游戏平台？",
+        "instant": {
+            "title": "即点即玩",
+            "desc": "无需下载安装，打开浏览器就能玩，支持所有现代浏览器"
+        },
+        "responsive": {
+            "title": "全设备支持",
+            "desc": "完美适配电脑、平板和手机，随时随地享受游戏乐趣"
+        },
+        "graphics": {
+            "title": "精美画面",
+            "desc": "每个游戏都经过精心设计，提供最佳的视觉体验"
+        },
+        "challenge": {
+            "title": "挑战自我",
+            "desc": "记录最高分，挑战朋友，成为游戏排行榜的霸主"
+        }
+    },
+    "footer": {
+        "copyright": "© 2026 JS游戏厅. 所有游戏均为开源项目，仅供学习和娱乐使用。"
+    },
+    "modal": {
+        "loading": "正在加载游戏...",
+        "close": "关闭游戏窗口"
+    },
+    "help": {
+        "title": "JS游戏厅 - 快捷键帮助",
+        "commonKeys": "常用快捷键：",
+        "escClose": "ESC - 关闭游戏",
+        "ctrlK": "Ctrl+K - 快速开始第一个游戏",
+        "ctrlSlash": "Ctrl+/ - 显示此帮助信息",
+        "categories": "游戏分类：",
+        "puzzle": "益智类 - 需要思考和策略的游戏",
+        "action": "动作类 - 快节奏的反应游戏",
+        "classic": "经典类 - 经典街机游戏",
+        "multiplayer": "对战类 - 可以与AI或朋友对战",
+        "clickToPlay": "点击任意游戏卡片即可开始游戏！"
+    },
+    "language": {
+        "switchTo": "切换语言"
+    }
+}

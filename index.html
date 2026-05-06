@@ -23,8 +23,16 @@
                 <span class="logo-text">JS游戏厅</span>
             </div>
             <div class="nav-links" role="menubar" aria-label="导航菜单">
-                <a href="#games" class="nav-link" role="menuitem" aria-label="跳转到游戏列表">游戏列表</a>
-                <a href="#about" class="nav-link" role="menuitem" aria-label="跳转到关于页面">关于</a>
+                <a href="#games" class="nav-link" role="menuitem" data-i18n="nav.games">游戏列表</a>
+                <a href="#about" class="nav-link" role="menuitem" data-i18n="nav.about">关于</a>
+            </div>
+            
+            <!-- 语言切换器 -->
+            <div class="language-switcher">
+                <button class="lang-btn" onclick="i18n.toggleLocale()" aria-label="切换语言" title="切换语言">
+                    <span class="lang-icon">🌐</span>
+                    <span class="lang-current">中文</span>
+                </button>
             </div>
             
             <!-- 移动端汉堡菜单按钮 -->
@@ -43,29 +51,29 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
-                        <span class="title-gradient">30个经典游戏</span>
+                        <span class="title-gradient" data-i18n="hero.titleGradient">30个经典游戏</span>
                         <br>
-                        <span class="title-highlight">一站式畅玩</span>
+                        <span class="title-highlight" data-i18n="hero.titleHighlight">一站式畅玩</span>
                     </h1>
-                    <p class="hero-description">
+                    <p class="hero-description" data-i18n="hero.description">
                         从经典的消消乐到刺激的射箭游戏，从烧脑的俄罗斯方块到快节奏的打字游戏——这里汇集了最受欢迎的HTML5/JavaScript游戏，无需下载，即点即玩！
                     </p>
                     <div class="hero-stats">
                         <div class="stat-item">
                             <span class="stat-number">30+</span>
-                            <span class="stat-label">精彩游戏</span>
+                            <span class="stat-label" data-i18n="hero.statsGames">精彩游戏</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">100%</span>
-                            <span class="stat-label">免费畅玩</span>
+                            <span class="stat-label" data-i18n="hero.statsFree">免费畅玩</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">0</span>
-                            <span class="stat-label">下载需求</span>
+                            <span class="stat-label" data-i18n="hero.statsNoDownload">下载需求</span>
                         </div>
                     </div>
                     <button class="cta-button" onclick="scrollToGames()">
-                        <span>立即开始游戏</span>
+                        <span data-i18n="hero.ctaButton">立即开始游戏</span>
                         <span class="button-glow"></span>
                     </button>
                 </div>
@@ -73,15 +81,15 @@
                     <div class="game-showcase">
                         <div class="showcase-card active" data-game="candy">
                             <div class="card-icon">🍭</div>
-                            <div class="card-title">糖果消消乐</div>
+                            <div class="card-title" data-i18n="showcase.candy">糖果消消乐</div>
                         </div>
                         <div class="showcase-card" data-game="archery">
                             <div class="card-icon">🏹</div>
-                            <div class="card-title">射箭大师</div>
+                            <div class="card-title" data-i18n="showcase.archery">射箭大师</div>
                         </div>
                         <div class="showcase-card" data-game="tetris">
                             <div class="card-icon">🧱</div>
-                            <div class="card-title">俄罗斯方块</div>
+                            <div class="card-title" data-i18n="showcase.tetris">俄罗斯方块</div>
                         </div>
                     </div>
                 </div>
@@ -94,9 +102,9 @@
                 <div class="section-header">
                     <h2 class="section-title">
                         <span class="title-icon">🎯</span>
-                        选择你的游戏
+                        <span data-i18n="games.title">选择你的游戏</span>
                     </h2>
-                    <p class="section-subtitle">点击任意游戏卡片即可立即开始游戏</p>
+                    <p class="section-subtitle" data-i18n="games.subtitle">点击任意游戏卡片即可立即开始游戏</p>
                 </div>
                 
                 <!-- 搜索框 -->
@@ -110,6 +118,7 @@
                         role="searchbox"
                         aria-label="搜索游戏"
                         aria-describedby="search-hint"
+                        data-i18n-placeholder="games.search"
                     >
                     <span class="search-icon" role="img" aria-label="搜索图标">🔍</span>
                     <span id="search-hint" class="sr-only">输入游戏名称或描述进行搜索</span>
@@ -117,11 +126,11 @@
                 
                 <!-- 游戏过滤器 -->
                 <div class="game-filters" role="group" aria-label="游戏分类过滤">
-                    <button class="filter-btn active" data-filter="all" aria-current="true">全部游戏</button>
-                    <button class="filter-btn" data-filter="puzzle">益智类</button>
-                    <button class="filter-btn" data-filter="action">动作类</button>
-                    <button class="filter-btn" data-filter="classic">经典类</button>
-                    <button class="filter-btn" data-filter="multiplayer">对战类</button>
+                    <button class="filter-btn active" data-filter="all" aria-current="true" data-i18n="games.filters.all">全部游戏</button>
+                    <button class="filter-btn" data-filter="puzzle" data-i18n="games.filters.puzzle">益智类</button>
+                    <button class="filter-btn" data-filter="action" data-i18n="games.filters.action">动作类</button>
+                    <button class="filter-btn" data-filter="classic" data-i18n="games.filters.classic">经典类</button>
+                    <button class="filter-btn" data-filter="multiplayer" data-i18n="games.filters.multiplayer">对战类</button>
                 </div>
 
                 <!-- 游戏网格 -->
@@ -134,27 +143,27 @@
         <!-- 特色功能区域 -->
         <section class="features-section">
             <div class="container">
-                <h2 class="section-title">为什么选择我们的游戏平台？</h2>
+                <h2 class="section-title" data-i18n="features.title">为什么选择我们的游戏平台？</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">⚡</div>
-                        <h3>即点即玩</h3>
-                        <p>无需下载安装，打开浏览器就能玩，支持所有现代浏览器</p>
+                        <h3 data-i18n="features.instant.title">即点即玩</h3>
+                        <p data-i18n="features.instant.desc">无需下载安装，打开浏览器就能玩，支持所有现代浏览器</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📱</div>
-                        <h3>全设备支持</h3>
-                        <p>完美适配电脑、平板和手机，随时随地享受游戏乐趣</p>
+                        <h3 data-i18n="features.responsive.title">全设备支持</h3>
+                        <p data-i18n="features.responsive.desc">完美适配电脑、平板和手机，随时随地享受游戏乐趣</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🎨</div>
-                        <h3>精美画面</h3>
-                        <p>每个游戏都经过精心设计，提供最佳的视觉体验</p>
+                        <h3 data-i18n="features.graphics.title">精美画面</h3>
+                        <p data-i18n="features.graphics.desc">每个游戏都经过精心设计，提供最佳的视觉体验</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🏆</div>
-                        <h3>挑战自我</h3>
-                        <p>记录最高分，挑战朋友，成为游戏排行榜的霸主</p>
+                        <h3 data-i18n="features.challenge.title">挑战自我</h3>
+                        <p data-i18n="features.challenge.desc">记录最高分，挑战朋友，成为游戏排行榜的霸主</p>
                     </div>
                 </div>
             </div>
@@ -169,7 +178,7 @@
                     <span class="logo-icon">🎮</span>
                     <span class="logo-text">JS游戏厅</span>
                 </div>
-                <p class="footer-text">
+                <p class="footer-text" data-i18n="footer.copyright">
                     © 2026 JS游戏厅. 所有游戏均为开源项目，仅供学习和娱乐使用。
                 </p>
             </div>
@@ -181,19 +190,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modalGameTitle"></h3>
-                <button class="close-btn" onclick="closeGameModal()" aria-label="关闭游戏窗口">&times;</button>
+                <button class="close-btn" onclick="closeGameModal()" aria-label="关闭游戏窗口" data-i18n-aria-label="modal.close">&times;</button>
             </div>
             <div class="modal-body">
                 <span id="modalDescription" class="sr-only">游戏窗口，包含游戏内容</span>
                 <div id="loadingIndicator" class="loading-indicator" role="status" aria-label="游戏加载中">
                     <div class="loading-spinner" aria-hidden="true"></div>
-                    <p class="loading-text">正在加载游戏...</p>
+                    <p class="loading-text" data-i18n="modal.loading">正在加载游戏...</p>
                 </div>
                 <iframe id="gameFrame" src="" frameborder="0" title="游戏内容"></iframe>
             </div>
         </div>
     </div>
 
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
